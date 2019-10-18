@@ -3,22 +3,16 @@ require('./assets/main.scss');
 import angular from 'angular';
 import uirouter from '@uirouter/angularjs';
 
-import { config, bootstrap } from './app.config';
+import NotFound from './components/NotFound';
+import UserList from './components/UserList';
+import UserInfo from './components/UserInfo';
 
-import { Header } from './components/Header';
-import { Content } from './components/Content';
-import { Posts } from './components/posts/Posts';
-import { UserList } from './components/posts/UserList';
-import { UserPosts } from './components/posts/UserPosts';
-import { Comments } from './components/posts/Comments';
+import { config, run } from './app.config';
 
 angular
   .module('app', [uirouter])
   .config(config)
-  .run(bootstrap)
-  .component('cHeader', Header)
-  .component('cContent', Content)
-  .component('cPosts', Posts)
+  .component('cNotFound', NotFound)
   .component('cUserList', UserList)
-  .component('cUserPosts', UserPosts)
-  .component('cComments', Comments);
+  .component('cUserInfo', UserInfo)
+  .run(run);
