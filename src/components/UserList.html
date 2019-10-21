@@ -1,3 +1,40 @@
-<h1>
+<h1 class="h1">
     Lista de Usuários
 </h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Email</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Photo</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="usuario in $ctrl.usuarios">
+            <th scope="row">{{ usuario.id }} </th>
+            <td>{{ usuario.email }}</td>
+            <td>{{ usuario.first_name }}</td>
+            <td>{{ usuario.last_name }}</td>
+            <td>
+                <img ng-src="{{ usuario.avatar }}" width="40" />
+            </td>
+            <td>
+                <a class="btn btn-info" ui-sref="userInfo({userId: usuario.id})">Info</a>
+                <!-- <button class="btn btn-info" ui-sref="userInfo({userId: usuario.id})">Info</button> -->
+                <!-- <button class="btn btn-info" ng-click="$ctrl.showUser(usuario.id)">Info</button> -->
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<nav aria-label="...">
+    <ul class="pagination pagination-sm justify-content-center">
+        <li class="page-item" ng-repeat="pagina in $ctrl.getTotalPages() track by $index">
+            <button class="page-link" ng-click="$ctrl.pageClick($index + 1)">{{$index + 1}}</button>
+        </li>
+    </ul>
+</nav>

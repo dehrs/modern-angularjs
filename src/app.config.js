@@ -14,5 +14,5 @@ export function config($logProvider, $stateProvider, $urlServiceProvider) {
 
 export function run($uiRouter) {
   'ngInject';
-  $uiRouter.plugin(Visualizer);
+  //$uiRouter.plugin(Visualizer);
 }
