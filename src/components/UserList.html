@@ -27,6 +27,10 @@
                 <a class="btn btn-info" ui-sref="userInfo({userId: usuario.id})">
                     <span class="mdi mdi-account-edit"></span>
                 </a>
+                <button class="btn btn-danger" ng-click="$ctrl.deleteUser(usuario.id)">
+                        <span class="mdi mdi-delete"></span>
+                </button>
+
                 <!-- <button class="btn btn-info" ui-sref="userInfo({userId: usuario.id})">Info</button> -->
                 <!-- <button class="btn btn-info" ng-click="$ctrl.showUser(usuario.id)">Info</button> -->
             </td>

@@ -1,29 +1,40 @@
 <h1 class="h1"> Informações do Usuário</h1>
 
 
-<form>
+<form name="userForm" novalidate>
     <div class="form-group">
         <img ng-src="{{$ctrl.userInfo.avatar}}" />
     </div>
 
     <div class="form-group">
         <label>Nome:</label>
-        <input type="text" class="form-control" ng-model="$ctrl.userInfo.first_name" placeholder="Informe seu nome" >
+        <input type="text" class="form-control" name="nome" ng-required="true" ng-model="$ctrl.userInfo.first_name"
+            placeholder="Informe seu nome">
+        <small ng-show="userForm.nome.$error.required && userForm.nome.$dirty" class="form-text">
+            Por Favor, Preencha o Nome!
+        </small>
     </div>
 
     <div class="form-group">
         <label>Sobrenome:</label>
-        <input type="text" class="form-control" ng-model="$ctrl.userInfo.last_name" placeholder="Informe seu Sobrenome">
+        <input type="text" class="form-control" name="sobrenome" ng-required="true"
+            ng-model="$ctrl.userInfo.last_name" placeholder="Informe seu Sobrenome">
+        <small ng-show="userForm.sobrenome.$error.required && userForm.sobrenome.$dirty" class="form-text">
+            Por Favor, Preencha o Sobrenome!
+        </small>
     </div>
 
     <div class="form-group">
         <label>Email:</label>
-        <input type="text" class="form-control" ng-model="$ctrl.userInfo.email" placeholder="Informe seu email"> 
+        <input type="text" class="form-control" name="email" ng-required="true" ng-model="$ctrl.userInfo.email"
+            placeholder="Informe seu email">
+        <small ng-show="userForm.email.$error.required && userForm.email.$dirty" class="form-text">
+            Por Favor, Preencha o Email!
+        </small>
     </div>
 
-    <button class="btn btn-success">
+    <button class="btn btn-success" ng-disabled="userForm.$invalid" ng-click="$ctrl.updateUser()">
         <span class="mdi mdi-content-save"></span> Salvar
     </button>
-
 
 </form>

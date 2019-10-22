@@ -13,7 +13,19 @@ const controller = [
       });
     };
 
+    $ctrl.deleteUser = userId => {
+      $http.delete('https://reqres.in/api/users/' + userId).then(response => {
+        $ctrl.usuarios = $ctrl.usuarios.filter(
+          usuario => userId !== usuario.id
+        );
+      });
+    };
+
     let totalPages = 0;
+
+    $ctrl.$onInit = () => {
+      getUsers();
+    };
 
     $ctrl.usuarios = [];
 
@@ -22,8 +34,6 @@ const controller = [
     $ctrl.pageClick = n => getUsers(n);
 
     $ctrl.showUsers = id => $state.go('userInfo', { userId: id });
-
-    getUsers();
   }
 ];
 

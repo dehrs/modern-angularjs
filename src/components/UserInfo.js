@@ -1,19 +1,37 @@
 const template = require('./UserInfo.html');
 
+const bindings = {
+  $transition$: '<'
+};
+
 const controller = [
   '$http',
-  function Controller($http) {
+  '$state',
+  function Controller($http, $state) {
     const $ctrl = this;
 
-    $ctrl.userInfo = {};
+    $ctrl.$onInit = () => {
+      const params = $ctrl.$transition$.params();
+      $http
+        .get('https://reqres.in/api/users/' + params.userId)
+        .then(response => {
+          $ctrl.userInfo = response.data.data;
+        });
+    };
 
-    $http.get('https://reqres.in/api/users/2').then(response => {
-      $ctrl.userInfo = response.data.data;
-    });
+    $ctrl.updateUser = () => {
+      $http
+        .put('https://reqres.in/api/users/' + $ctrl.userInfo.id, $ctrl.userInfo)
+        .then(response => {
+          $state.go('userList');
+        });
+    };
+    $ctrl.userInfo = {};
   }
 ];
 
 export default {
   template,
-  controller
+  controller,
+  bindings
 };
