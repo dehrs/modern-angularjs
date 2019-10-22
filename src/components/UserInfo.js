@@ -5,11 +5,10 @@ const controller = [
   function Controller($http) {
     const $ctrl = this;
 
-    $ctrl.userInfo = [];
+    $ctrl.userInfo = {};
 
     $http.get('https://reqres.in/api/users/2').then(response => {
-      $ctrl.userInfo = response.data;
-      console.log(response);
+      $ctrl.userInfo = response.data.data;
     });
   }
 ];
